@@ -2,10 +2,9 @@ const express = require("express");
 const app = express();
 
 const connect = require("./database/practiceQnsDb");
+const practiceQns = require("./routes/practiceQns");
 
-app.get("/", (req, res) => {
-  res.send("Hello World!");
-});
+app.use("/practice", practiceQns);
 
 async function server() {
   const err = await connect();
@@ -13,9 +12,7 @@ async function server() {
     ? console.log("Db connection successful")
     : console.log("Db connection failed");
   app.listen(process.env.port, () => {
-    console.log(
-      `Example app listening at http://localhost:${process.env.port}`
-    );
+    console.log(`Server listening at http://localhost:${process.env.port}`);
   });
 }
 
