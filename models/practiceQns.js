@@ -36,6 +36,16 @@ const PracticeQnsSchema = new mongoose.Schema({
         required: true,
         default: false,
       },
+      bookmarks: {
+        type: Number,
+        required: true,
+        default: 0,
+      },
+      likes: {
+        type: Number,
+        required: true,
+        default: 0,
+      },
       source: {
         type: mongoose.SchemaTypes.Url,
         required: true,
