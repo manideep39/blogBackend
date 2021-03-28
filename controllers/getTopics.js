@@ -53,6 +53,6 @@ module.exports = {
   getTopics,
   getQuestions,
   getAnswer,
-  likeQn,
+  handleLikes,
   handleBookmarks,
 };
