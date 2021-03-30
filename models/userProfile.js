@@ -6,13 +6,7 @@ const UserSchema = Schema({
     type: String,
     required: true,
   },
-  bookmarks: [
-    {
-      questionId: {
-        type: String,
-      },
-    },
-  ],
+  bookmarks: [],
   likes: [],
 });
 

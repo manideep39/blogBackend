@@ -5,12 +5,13 @@ const {
   getTopics,
   getQuestions,
   getAnswer,
-  handleLikes,
+  handleLikeAndBookmarks,
 } = require("../controllers/practiceQns.js");
 
 router.get("/topics", getTopics);
 router.get("/questions/:topicId", getQuestions);
 router.get("/answer/:topicId/:questionId", getAnswer);
-router.post("/like/:topicId/:questionId", handleLikes);
+router.post("/likes/:topicId/:questionId", handleLikeAndBookmarks);
+router.post("/bookmarks/:topicId/:questionId", handleLikeAndBookmarks);
 
 module.exports = router;

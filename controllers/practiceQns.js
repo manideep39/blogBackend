@@ -46,20 +46,20 @@ const getAnswer = async (req, res) => {
   }
 };
 
-const handleLikes = async (req, res) => {
+const handleLikeAndBookmarks = async (req, res) => {
   try {
+    const path = req.path.split("/")[1];
     const { topicId, questionId } = req.params;
-    const id = "123";
-    const topicDoc = await PracticeQns.findById(topicId);
+    const id = "123"; // for testing;
     if (
       !(await UserProfile.findOne({
         user_id: id,
-        likes: { $eq: questionId },
+        [path]: { $eq: questionId },
       }))
     ) {
       await UserProfile.update(
         { user_id: id },
-        { $push: { likes: questionId } }
+        { $push: { [path]: questionId } }
       );
       await PracticeQns.update(
         {
@@ -67,13 +67,13 @@ const handleLikes = async (req, res) => {
           "questions._id": questionId,
         },
         {
-          $inc: { "questions.$.likes": 1 },
+          $inc: { [`questions.$.${path}`]: 1 },
         }
       );
     } else {
       await UserProfile.update(
         { user_id: id },
-        { $pull: { likes: questionId } }
+        { $pull: { [path]: questionId } }
       );
       await PracticeQns.update(
         {
@@ -81,11 +81,11 @@ const handleLikes = async (req, res) => {
           "questions._id": questionId,
         },
         {
-          $inc: { "questions.$.likes": -1 },
+          $inc: { [`questions.$.${path}`]: -1 },
         }
       );
     }
-    res.send();
+    res.sendStatus(200);
   } catch (err) {
     res.status(400).json({ error: false, message: `${err}` });
   }
@@ -95,5 +95,5 @@ module.exports = {
   getTopics,
   getQuestions,
   getAnswer,
-  handleLikes,
+  handleLikeAndBookmarks,
 };
