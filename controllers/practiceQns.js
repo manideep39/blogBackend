@@ -46,6 +46,16 @@ const getAnswer = async (req, res) => {
   }
 };
 
+const getProfile = async (req, res) => {
+  try {
+    const id = "123"; // testing
+    const response = await UserProfile.findOne({ user_id: id });
+    res.status(200).json({ error: false, data: response });
+  } catch (err) {
+    res.status(400).json({ error: true, message: `${err}` });
+  }
+};
+
 const handleLikeAndBookmarks = async (req, res) => {
   try {
     const path = req.path.split("/")[1];
@@ -95,5 +105,6 @@ module.exports = {
   getTopics,
   getQuestions,
   getAnswer,
+  getProfile,
   handleLikeAndBookmarks,
 };
