@@ -7,8 +7,10 @@ const {
   getAnswer,
   handleLikeAndBookmarks,
   getProfile,
+  handleProfile,
 } = require("../controllers/practiceQns.js");
 
+router.get("/", handleProfile);
 router.get("/topics", getTopics);
 router.get("/questions/:topicId", getQuestions);
 router.get("/answer/:topicId/:questionId", getAnswer);
