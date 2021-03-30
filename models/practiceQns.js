@@ -1,6 +1,5 @@
 const mongoose = require("mongoose");
 require("mongoose-type-url");
-const { Schema } = mongoose;
 const topics_enum = require("../utils/enums/TopicsEnum");
 
 const PracticeQnsSchema = new mongoose.Schema({

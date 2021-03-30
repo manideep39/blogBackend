@@ -1,4 +1,5 @@
 const PracticeQns = require("../models/practiceQns");
+const UserProfile = require("../models/userProfile.js");
 
 const getTopics = async (req, res) => {
   try {
@@ -45,14 +46,54 @@ const getAnswer = async (req, res) => {
   }
 };
 
-const handleLikes = async (req, res) => {};
-
-const handleBookmarks = async (req, res) => {};
+const handleLikes = async (req, res) => {
+  try {
+    const { topicId, questionId } = req.params;
+    const id = "123";
+    const topicDoc = await PracticeQns.findById(topicId);
+    if (
+      !(await UserProfile.findOne({
+        user_id: id,
+        likes: { $eq: questionId },
+      }))
+    ) {
+      await UserProfile.update(
+        { user_id: id },
+        { $push: { likes: questionId } }
+      );
+      await PracticeQns.update(
+        {
+          _id: topicId,
+          "questions._id": questionId,
+        },
+        {
+          $inc: { "questions.$.likes": 1 },
+        }
+      );
+    } else {
+      await UserProfile.update(
+        { user_id: id },
+        { $pull: { likes: questionId } }
+      );
+      await PracticeQns.update(
+        {
+          _id: topicId,
+          "questions._id": questionId,
+        },
+        {
+          $inc: { "questions.$.likes": -1 },
+        }
+      );
+    }
+    res.send();
+  } catch (err) {
+    res.status(400).json({ error: false, message: `${err}` });
+  }
+};
 
 module.exports = {
   getTopics,
   getQuestions,
   getAnswer,
   handleLikes,
-  handleBookmarks,
 };
