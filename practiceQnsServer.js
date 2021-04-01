@@ -8,7 +8,7 @@ app.use('/practice', practiceQns)
 
 async function server () {
   try {
-    const err = await connect()
+    await connect()
     app.listen(process.env.port, () => {
       console.log(`Server listening at http://localhost:${process.env.port}`)
     })

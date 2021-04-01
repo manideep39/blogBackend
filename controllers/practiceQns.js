@@ -10,7 +10,9 @@ const getTopics = async (req, res) => {
     ])
     res.status(200).json({ error: false, data: response })
   } catch (err) {
-    res.status(400).json({ error: true, message: `${err}` })
+    res
+      .status(400)
+      .json({ error: true, message: `Couldn't get topics ${err}` })
   }
 }
 
@@ -28,7 +30,9 @@ const getQuestions = async (req, res) => {
     )
     res.status(200).json({ error: false, data: response })
   } catch (err) {
-    res.status(400).json({ error: true, message: `${err}` })
+    res
+      .status(400)
+      .json({ error: true, message: `Couldn't get questions ${err}` })
   }
 }
 
@@ -42,7 +46,9 @@ const getAnswer = async (req, res) => {
     const response = { explanation, source, likes, bookmarks }
     res.status(200).json({ error: false, data: response })
   } catch (err) {
-    res.status(400).json({ error: true, message: `${err}` })
+    res
+      .status(400)
+      .json({ error: true, message: `Couldn't get the answer ${err}` })
   }
 }
 
