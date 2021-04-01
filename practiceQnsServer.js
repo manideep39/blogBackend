@@ -13,7 +13,7 @@ async function server () {
       console.log(`Server listening at http://localhost:${process.env.port}`)
     })
   } catch (err) {
-    console.log('Db connection failed')
+    console.log('Db connection failed', err)
   }
 }
 

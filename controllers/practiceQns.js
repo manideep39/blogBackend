@@ -66,6 +66,7 @@ const handleProfile = async (req, res) => {
         likes: []
       })
       newUser.save((err) => {
+        if (err) res.status(400).json({ error: true, message: `${err}` })
         res.sendStatus(200)
       })
     }

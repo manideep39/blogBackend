@@ -1,13 +1,13 @@
 const mongoose = require('mongoose')
 require('mongoose-type-url')
-const topics_enum = require('../utils/enums/TopicsEnum')
+const TOPICS_ENUM = require('../utils/enums/TopicsEnum')
 
 const PracticeQnsSchema = new mongoose.Schema({
   name: {
     type: String,
     required: true,
     unique: true,
-    enum: [...Object.values(topics_enum)]
+    enum: [...Object.values(TOPICS_ENUM)]
   },
   icon: {
     type: String,
