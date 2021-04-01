@@ -1,5 +1,5 @@
-require("dotenv").config();
+require('dotenv').config()
 
-const practiceQnsServer = require("./practiceQnsServer");
+const practiceQnsServer = require('./practiceQnsServer')
 
-practiceQnsServer();
+practiceQnsServer()

@@ -1,5 +1,5 @@
-const express = require("express");
-const router = express.Router();
+const express = require('express')
+const router = express.Router()
 
 const {
   getTopics,
@@ -7,15 +7,15 @@ const {
   getAnswer,
   handleLikeAndBookmarks,
   getProfile,
-  handleProfile,
-} = require("../controllers/practiceQns.js");
+  handleProfile
+} = require('../controllers/practiceQns.js')
 
-router.get("/", handleProfile);
-router.get("/topics", getTopics);
-router.get("/questions/:topicId", getQuestions);
-router.get("/answer/:topicId/:questionId", getAnswer);
-router.post("/likes/:topicId/:questionId", handleLikeAndBookmarks);
-router.post("/bookmarks/:topicId/:questionId", handleLikeAndBookmarks);
-router.get("/profile", getProfile);
+router.get('/', handleProfile)
+router.get('/topics', getTopics)
+router.get('/questions/:topicId', getQuestions)
+router.get('/answer/:topicId/:questionId', getAnswer)
+router.post('/likes/:topicId/:questionId', handleLikeAndBookmarks)
+router.post('/bookmarks/:topicId/:questionId', handleLikeAndBookmarks)
+router.get('/profile', getProfile)
 
-module.exports = router;
+module.exports = router
