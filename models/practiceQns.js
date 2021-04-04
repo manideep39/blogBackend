@@ -1,58 +1,58 @@
-const mongoose = require("mongoose");
-require("mongoose-type-url");
-const topics_enum = require("../utils/enums/TopicsEnum");
+const mongoose = require('mongoose')
+require('mongoose-type-url')
+const TOPICS_ENUM = require('../utils/enums/TopicsEnum')
 
 const PracticeQnsSchema = new mongoose.Schema({
   name: {
     type: String,
     required: true,
     unique: true,
-    enum: [...Object.values(topics_enum)],
+    enum: [...Object.values(TOPICS_ENUM)]
   },
   icon: {
     type: String,
-    required: true,
+    required: true
   },
   questions: [
     {
       statement: {
         type: String,
         required: true,
-        minLength: 4,
+        minLength: 4
       },
       explanation: {
         type: String,
         required: true,
-        minLength: 2,
+        minLength: 2
       },
       type: {
         type: String,
         required: true,
-        match: /LONG/,
+        match: /LONG/
       },
       verified: {
         type: Boolean,
         required: true,
-        default: false,
+        default: false
       },
       bookmarks: {
         type: Number,
         required: true,
-        default: 0,
+        default: 0
       },
       likes: {
         type: Number,
         required: true,
-        default: 0,
+        default: 0
       },
       source: {
         type: mongoose.SchemaTypes.Url,
-        required: true,
-      },
-    },
-  ],
-});
+        required: true
+      }
+    }
+  ]
+})
 
-const PracticeQns = mongoose.model("PracticeQns", PracticeQnsSchema);
+const PracticeQns = mongoose.model('PracticeQns', PracticeQnsSchema)
 
-module.exports = PracticeQns;
+module.exports = PracticeQns
